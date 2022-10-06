@@ -47,9 +47,9 @@
         // var json = require('./questions.json');
         // console.log(json);
 
-        // $.getJSON("./questions.json", function(json) {
-        //     console.log(json); // this will show the info it in firebug console
-        // });
+        $.getJSON("https://dvbondoy.github.io/yournal/questions.json", function(json) {
+            console.log(json); // this will show the info it in firebug console
+        });
 
         // fetch("https://dvbondoy.github.io/yournal/questions.json")
         //   .then(response => response.json())
@@ -60,11 +60,11 @@
         //     console.log(data);
         // });
 
-        fetch('https://dvbondoy.github.io/yournal/questions.json')
-            .then(res => res.json())
-            .then((out) => {
-                console.log('Output: ', out);
-        }).catch(err => console.error(err));
+        // fetch('https://dvbondoy.github.io/yournal/questions.json')
+        //     .then(res => res.json())
+        //     .then((out) => {
+        //         console.log('Output: ', out);
+        // }).catch(err => console.error(err));
     </script>
   </body>
 </html>
