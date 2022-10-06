@@ -11,29 +11,28 @@
   </head>
   <body>
     <header>
-      <h1>Yournal</h1>
-      <h3>Your personal Journal</h3>
+      <h1>YourJournal</h1>
     </header>
 
     <main>
       <section class="new-note">
-        <h2>Enter a new note</h2>
+        <h2>Enter a new journal</h2>
         <form>
           <div>
-            <label for="title">Note title</label>
+            <!-- <label for="title">Note title</label> -->
             <input id="title" type="text" required>
           </div>
           <div>
-            <label for="body">Note text</label>
-            <input id="body" type="text" required>
+            <!-- <label for="body">Note text</label> -->
+            <textarea id="body" rows="4" cols="50" required></textarea>
           </div>
           <div>
-            <button>Create new note</button>
+            <button>Save journal</button>
           </div>
         </form>
       </section>
       <section class="note-display">
-        <h2>Notes</h2>
+        <h2>Journals</h2>
         <ul>
 
         </ul>
@@ -52,9 +51,20 @@
         //     console.log(json); // this will show the info it in firebug console
         // });
 
-        fetch("questions.json")
-          .then(response => response.json())
-          .then(json => console.log(json));
+        // fetch("https://dvbondoy.github.io/yournal/questions.json")
+        //   .then(response => response.json())
+        //   .then(json => console.log(json));
+
+        // $.getJSON('https://dvbondoy.github.io/yournal/questions.json', function(data) {
+        //     // JSON result in `data` variable
+        //     console.log(data);
+        // });
+
+        fetch('https://dvbondoy.github.io/yournal/questions.json')
+            .then(res => res.json())
+            .then((out) => {
+                console.log('Output: ', out);
+        }).catch(err => console.error(err));
     </script>
   </body>
 </html>
