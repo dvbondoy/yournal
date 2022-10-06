@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Yournal</title>
+    <link href="style.css" rel="stylesheet">
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Yournal</h1>
+      <h3>Your personal Journal</h3>
+    </header>
+
+    <main>
+      <section class="new-note">
+        <h2>Enter a new note</h2>
+        <form>
+          <div>
+            <label for="title">Note title</label>
+            <input id="title" type="text" required>
+          </div>
+          <div>
+            <label for="body">Note text</label>
+            <input id="body" type="text" required>
+          </div>
+          <div>
+            <button>Create new note</button>
+          </div>
+        </form>
+      </section>
+      <section class="note-display">
+        <h2>Notes</h2>
+        <ul>
+
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>Copyright dvbondoy 2022</p>
+    </footer>
+
+    <script>
+        // var json = require('./questions.json');
+        // console.log(json);
+
+        // $.getJSON("./questions.json", function(json) {
+        //     console.log(json); // this will show the info it in firebug console
+        // });
+
+        fetch("questions.json")
+          .then(response => response.json())
+          .then(json => console.log(json));
+    </script>
+  </body>
+</html>
