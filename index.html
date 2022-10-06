@@ -3,11 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.2/js/bootstrap.min.js" integrity="sha512-5BqtYqlWfJemW5+v+TZUs22uigI8tXeVah5S/1Z6qBLVO7gakAOtkOzUtgq6dsIo5c0NJdmGPs0H9I+2OHUHVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Yournal</title>
     <link href="style.css" rel="stylesheet">
     <script src="index.js" defer></script>
+    
+
   </head>
   <body>
     <header>
@@ -20,7 +22,7 @@
         <form>
           <div>
             <!-- <label for="title">Note title</label> -->
-            <input id="title" type="text" required>
+            <input id="title" type="text" size="50">
           </div>
           <div>
             <!-- <label for="body">Note text</label> -->
@@ -44,27 +46,15 @@
     </footer>
 
     <script>
-        // var json = require('./questions.json');
-        // console.log(json);
-
-        $.getJSON("https://dvbondoy.github.io/yournal/questions.json", function(json) {
-            console.log(json); // this will show the info it in firebug console
+      $(document).ready(function(){
+        $("#title").text("sample");
+        $.getJSON("https://dvbondoy.github.io/yournal/questions.json", function(data) {
+            let obj = Object.keys(data);
+            rnd = Math.floor(Math.random() * obj.length);
+            console.log(data[rnd]);
+            $("#title").val(data[rnd]);
         });
-
-        // fetch("https://dvbondoy.github.io/yournal/questions.json")
-        //   .then(response => response.json())
-        //   .then(json => console.log(json));
-
-        // $.getJSON('https://dvbondoy.github.io/yournal/questions.json', function(data) {
-        //     // JSON result in `data` variable
-        //     console.log(data);
-        // });
-
-        // fetch('https://dvbondoy.github.io/yournal/questions.json')
-        //     .then(res => res.json())
-        //     .then((out) => {
-        //         console.log('Output: ', out);
-        // }).catch(err => console.error(err));
+      });
     </script>
   </body>
 </html>
