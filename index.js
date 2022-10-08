@@ -3,8 +3,11 @@
 const list = document.querySelector('#list');
 const titleInput = document.querySelector('#title');
 const bodyInput = document.querySelector('#body');
+const today = new Date().toLocaleDateString("en-US");
 const form = document.querySelector('form');
-const submitBtn = document.querySelector('form button');
+// const submitBtn = document.querySelector('form button');
+const submitBtn = document.querySelector('#save');
+
 
 // Create an instance of a db object for us to store the open database in
 let db;
@@ -40,6 +43,7 @@ openRequest.addEventListener('upgradeneeded', e => {
   // Define what data items the objectStore will contain
   objectStore.createIndex('title', 'title', { unique: false });
   objectStore.createIndex('body', 'body', { unique: false });
+  objectStore.createIndex('date', 'date', { unique:false});
 
   console.log('Database setup complete');
 });
@@ -53,7 +57,7 @@ function addData(e) {
   e.preventDefault();
 
   // grab the values entered into the form fields and store them in an object ready for being inserted into the DB
-  const newItem = { title: titleInput.value, body: bodyInput.value };
+  const newItem = { title: titleInput.value, body: bodyInput.value, date: today };
 
   // open a read/write db transaction, ready for adding the data
   const transaction = db.transaction(['notes_os'], 'readwrite');
@@ -98,6 +102,7 @@ function displayData() {
 
     // If there is still another data item to iterate through, keep running this code
     if(cursor) {
+      console.log(cursor);
       const card = document.createElement('div');
       card.setAttribute("class","card");
       list.appendChild(card);
@@ -106,11 +111,15 @@ function displayData() {
       card_body.setAttribute("class", "card-body");
       card.appendChild(card_body);
       
+      const card_date = document.createElement('p');
+      card_date.textContent = cursor.value.date;
+      card_body.appendChild(card_date);
+
       const card_title = document.createElement('h5');
       card_title.setAttribute("class","card-title");
       card_title.textContent = cursor.value.title;
       card_body.appendChild(card_title);
-      card_body.setAttribute('data-note-id', cursor.value.id);
+      card.setAttribute('data-note-id', cursor.value.id);
       
       const card_text = document.createElement('p');
       card_text.setAttribute("class","card-text");
@@ -119,45 +128,20 @@ function displayData() {
       
       const delete_btn = document.createElement('button');
       delete_btn.setAttribute("class","btn btn-danger card-link");
-      delete_btn.textContent = "Delete";
       delete_btn.addEventListener("click",deleteItem);
+
+      const trash = document.createElement('i');
+      trash.setAttribute("class","bi bi-trash");
+      delete_btn.appendChild(trash);
       card_body.appendChild(delete_btn);
       
       const share_btn = document.createElement('button');
-      share_btn.setAttribute("class","btn btn-success");
-      share_btn.textContent = "Share";
+      share_btn.setAttribute("class","btn btn-success card-link");
       card_body.appendChild(share_btn);
 
-      
-
-      // Create a list item, h3, and p to put each data item inside when displaying it
-      // structure the HTML fragment, and append it inside the list
-      // const listItem = document.createElement('li');
-      // const h3 = document.createElement('h3');
-      // const para = document.createElement('p');
-      
-      // listItem.appendChild(h3);
-      // listItem.appendChild(para);
-      // list.appendChild(listItem);
-      // list.appendChild(card);
-
-      // Put the data from the cursor inside the h3 and para
-      // h3.textContent = cursor.value.title;
-      // para.textContent = cursor.value.body;
-
-      // Store the ID of the data item inside an attribute on the listItem, so we know
-      // which item it corresponds to. This will be useful later when we want to delete items
-      // listItem.setAttribute('data-note-id', cursor.value.id);
-
-      // Create a button and place it inside each listItem
-      // const deleteBtn = document.createElement('button');
-      // listItem.appendChild(deleteBtn);
-      // deleteBtn.textContent = 'Delete';
-      // deleteBtn.setAttribute("class","btn btn-danger")
-
-      // Set an event handler so that when the button is clicked, the deleteItem()
-      // function is run
-      // deleteBtn.addEventListener('click', deleteItem);
+      const share_icon = document.createElement('i');
+      share_icon.setAttribute('class','bi bi-share');
+      share_btn.appendChild(share_icon);
 
       // Iterate to the next item in the cursor
       cursor.continue();
@@ -179,7 +163,7 @@ function deleteItem(e) {
   // retrieve the name of the task we want to delete. We need
   // to convert it to a number before trying it use it with IDB; IDB key
   // values are type-sensitive.
-  const noteId = Number(e.target.parentNode.getAttribute('data-note-id'));
+  const noteId = Number(e.target.parentNode.parentNode.parentNode.getAttribute('data-note-id'));
 
   // open a database transaction and delete the task, finding it using the id we retrieved above
   const transaction = db.transaction(['notes_os'], 'readwrite');
@@ -190,7 +174,7 @@ function deleteItem(e) {
   transaction.addEventListener('complete', () => {
     // delete the parent of the button
     // which is the list item, so it is no longer displayed
-    e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+    e.target.parentNode.parentNode.parentNode.parentNode.removeChild(e.target.parentNode.parentNode.parentNode);
     console.log(`Note ${noteId} deleted.`);
 
     // Again, if list item is empty, display a 'No notes stored' message

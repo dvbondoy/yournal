@@ -8,10 +8,11 @@ body {
 }
 
 header, footer {
-  background-color: burlywood;
+  background-color: orange;
   color: white;
   line-height: 100px;
   padding: 0 20px;
+  margin-top: 10px;
 }
 
 .new-note, .note-display {
