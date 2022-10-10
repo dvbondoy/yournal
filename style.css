@@ -34,3 +34,10 @@ ul {
 div {
   margin-bottom: 10px;
 }
+
+.toast {
+  left: 50%;
+  position: fixed;
+  transform: translate(-50%, 0px);
+  z-index: 9999;
+}

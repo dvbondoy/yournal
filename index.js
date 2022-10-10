@@ -51,6 +51,15 @@ openRequest.addEventListener('upgradeneeded', e => {
 // Create an submit handler so that when the form is submitted the addData() function is run
 form.addEventListener('submit', addData);
 
+function toastIt(){
+  // const toastTrigger = document.getElementById('liveToastBtn')
+  const toastme = document.getElementById("urtoast");
+  const toast = new bootstrap.Toast(toastme);
+  console.log(toast);
+  toast.show();
+  // $("#urtoast").toast("show");
+}
+
 // Define the addData() function
 function addData(e) {
   // prevent default - we don't want the form to submit in the conventional way
@@ -80,8 +89,10 @@ function addData(e) {
 
     // update the display of data to show the newly added item, by running displayData() again.
     displayData();
+    
   });
 
+  toastIt();
   transaction.addEventListener('error', () => console.log('Transaction not opened due to error'));
 }
 
@@ -185,3 +196,4 @@ function deleteItem(e) {
     }
   });
 }
+
