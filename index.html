@@ -4,11 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.2/css/fontawesome.min.css" integrity="sha384-X8QTME3FCg1DLb58++lPvsjbQoCT9bp3MsUU3grbIny/3ZwUJkRNO8NPW6zqzuW9" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link href="style.css" rel="stylesheet">
@@ -26,7 +24,7 @@
         <!-- <h3>Enter a new journal</h3> -->
         <form>
           <div>
-            <input class="form-control" id="title" type="text">
+            <input class="form-control" id="title" type="text" disabled>
           </div>
           <div>
             <!-- <label for="body">Note text</label> -->
@@ -48,7 +46,6 @@
 
         </ul> -->
         <div id="list">
-          
         </div>
       </section>
     </main>
@@ -66,35 +63,6 @@
         Save successful!
       </div>
     </div>
-
-    <script>
-      $(document).ready(function(){
-        function getQuestions(){
-          $.getJSON("https://dvbondoy.github.io/yournal/questions.json", function(data) {
-            let obj = Object.keys(data);
-            rnd = Math.floor(Math.random() * obj.length);
-            console.log(obj.length);
-            console.log(data[rnd]);
-            $("#title").val(data[rnd]);
-        });
-        }
-
-        getQuestions();
-
-        $("#reset").click(function(){
-          $("#body").val("");
-          getQuestions();
-        });
-
-        // $('#save').click(function() {
-        //   $("#reset").trigger("click");
-        //   $('#success').show();
-        //   setTimeout(function() { 
-        //       $('#success').fadeOut(); 
-        //   }, 5000);
-        // });
-      });
-    </script>
     <script src="index.js" defer></script>
   </body>
 </html>

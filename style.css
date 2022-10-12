@@ -8,19 +8,22 @@ body {
 }
 
 header, footer {
-  background-color: orange;
+  background-color: #765555;
   color: white;
   line-height: 100px;
   padding: 0 20px;
   margin-top: 10px;
-}
-
-.new-note, .note-display {
-  padding: 20px;
+  
 }
 
 .new-note {
-  background: #ddd;
+  padding: 20px;
+  background: #ae866c;
+  margin-bottom: 10px;
+}
+
+.card {
+  background: #e3ddc5;
 }
 
 h1 {
