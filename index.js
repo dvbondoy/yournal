@@ -70,15 +70,12 @@ $(document).ready(function(){
   // Create an submit handler so that when the form is submitted the addData() function is run
   // form.addEventListener('submit', addData);
 
-  function toastIt(){
-    // const toastTrigger = document.getElementById('liveToastBtn')
-    const toastme = document.getElementById("urtoast");
-    const toast = new bootstrap.Toast(toastme);
-    // toast.show();
-    // $("#urtoast").toast("show");
-  }
-
   $("#save").click(function(){
+    if(document.getElementById("body").value == '')
+    {
+        alert("Answer is empty. Note not saved.");
+        return false;
+    }
     // grab the values entered into the form fields and store them in an object ready for being inserted into the DB
     const newItem = { title: titleInput.value, body: bodyInput.value, date: today };
 
@@ -91,21 +88,26 @@ $(document).ready(function(){
     // Make a request to add our newItem object to the object store
     const addRequest = objectStore.add(newItem);
 
-    // addRequest.addEventListener('success', () => {
-    //   // Clear the form, ready for adding the next entry
-    //   titleInput.value = '';
-    //   bodyInput.value = '';
-    // });
+    addRequest.addEventListener('success', () => {
+      // Clear the form, ready for adding the next entry
+      // titleInput.value = '';
+      // bodyInput.value = '';
+      $("#savetoast").show().delay(5000);
+      
+    });
 
     // Report on the success of the transaction completing, when everything is done
-    // transaction.addEventListener('complete', () => {
-    //   console.log('Transaction completed: database modification finished.');
+    transaction.addEventListener('complete', () => {
+      console.log('Transaction completed: database modification finished.');
 
-    //   // update the display of data to show the newly added item, by running displayData() again.
-    //   // displayData();
-    //   jdisplayData();
-    //   $("#refresh").click();
-    // });
+
+      // update the display of data to show the newly added item, by running displayData() again.
+      // displayData();
+      // jdisplayData();
+      // $("#refresh").click();
+    });
+
+    $("#savetoast").show();
 
     transaction.addEventListener('error', () => console.log('Transaction not opened due to error'));
   });
@@ -121,10 +123,10 @@ $(document).ready(function(){
       // If there is still another data item to iterate through, keep running this code
       if(cursor) {
         var $elem = $("#list");
-        $elem.append(
+        $elem.prepend(
           $('<div/>',{'class':'card','data-note-id':cursor.value.id}).append(
             $('<div/>',{'class':'card-body'}).append(
-              $('<p/>',{'text':cursor.value.date})
+              $('<p/>',{'text':cursor.value.date,'class':'small text-muted'})
             ).append(
               $('<h5/>',{'text':cursor.value.title})
             ).append(
@@ -147,10 +149,14 @@ $(document).ready(function(){
   }
 
   $(document).on('click', "[note-id]", function(){
-    var i = Number($(this).attr('note-id'));
-    const transaction = db.transaction(['notes_os'], 'readwrite');
-    const objectStore = transaction.objectStore('notes_os');
-    const deleteRequest = objectStore.delete(i);
-    $("[data-note-id='"+i+"']").remove();
+    if(confirm("Confirm to delete!")){
+      var i = Number($(this).attr('note-id'));
+      const transaction = db.transaction(['notes_os'], 'readwrite');
+      const objectStore = transaction.objectStore('notes_os');
+      const deleteRequest = objectStore.delete(i);
+      $("[data-note-id='"+i+"']").remove();
+    } else {
+      return false;
+    }
   });
 });
