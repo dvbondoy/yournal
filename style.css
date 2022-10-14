@@ -24,6 +24,7 @@ header, footer {
 
 .card {
   background: #e3ddc5;
+  margin-bottom: 10px;
 }
 
 #body {
