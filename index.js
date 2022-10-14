@@ -132,7 +132,7 @@ $(document).ready(function(){
             ).append(
               $('<p/>',{'text':cursor.value.body})
             ).append(
-              $('<button/>',{'class':'btn btn-warning card-link','note-id':cursor.value.id}).append(
+              $('<button/>',{'class':'btn btn-light card-link','note-id':cursor.value.id,'style':'color:red'}).append(
                 $('<i/>',{'class':'bi bi-trash'})
               )
             ).append(
