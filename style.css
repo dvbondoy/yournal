@@ -25,10 +25,19 @@ header, footer {
 .card {
   background: #e3ddc5;
   margin-bottom: 10px;
+  
 }
 
+.card h5 {
+  /* font-family: 'Gochi hand', cursive; */
+}
+
+.card p {
+  font-family: 'Gochi hand', cursive;
+}
 #body {
   margin-bottom: 10px;
+  font-family: 'Gochi hand', cursive;
 }
 
 h1 {
