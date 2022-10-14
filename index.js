@@ -128,7 +128,9 @@ $(document).ready(function(){
             $('<div/>',{'class':'card-body'}).append(
               $('<p/>',{'text':cursor.value.date,'class':'small text-muted'})
             ).append(
-              $('<h5/>',{'text':cursor.value.title})
+              $('<h6/>',{'text':cursor.value.title})
+            ).append(
+              $('<hr>')
             ).append(
               $('<p/>',{'text':cursor.value.body})
             ).append(
