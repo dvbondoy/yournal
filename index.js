@@ -132,11 +132,11 @@ $(document).ready(function(){
             ).append(
               $('<p/>',{'text':cursor.value.body})
             ).append(
-              $('<button/>',{'class':'btn btn-light card-link','note-id':cursor.value.id,'style':'color:red'}).append(
+              $('<button/>',{'class':'btn btn-light btn-sm card-link','note-id':cursor.value.id,'style':'color:red'}).append(
                 $('<i/>',{'class':'bi bi-trash'})
               )
             ).append(
-              $('<button/>',{'class':'btn btn-secondary card-link'}).append(
+              $('<button/>',{'class':'btn btn-secondary btn-sm card-link'}).append(
                 $('<i/>',{'class':'bi bi-share'})
               )
             )

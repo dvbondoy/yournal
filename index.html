@@ -35,8 +35,15 @@
       <section class="new-note">
         <!-- <h3>Enter a new journal</h3> -->
         <form>
-          <div>
-            <input class="form-control" id="title" type="text" disabled>
+          <div class="input-group mb-3">
+            <div class="input-group">
+              <input type="text" class="form-control" id="title">
+              <div class="input-group-prepend">
+                <button class="btn btn-secondary" type="button" id="reset" title="reset">
+                  <i class="bi bi-arrow-repeat"></i>
+                </button>
+              </div>
+            </div>
           </div>
           <div>
             <!-- <label for="body">Note text</label> -->
@@ -44,11 +51,6 @@
           </div>
           <div>
             <button class="btn btn-light" id="save">Save</button>
-            <!-- <input type="button" class="btn" id="reset"><i class="bi bi-arrow-clockwise"></i></input> -->
-            <!-- <input type="button" value="Reset" class="btn btn-secondary" id="reset"> -->
-            <button class="btn btn-secondary" id="reset" title="Reset">
-              <i class="bi bi-arrow-repeat"></i>
-            </button>
           </div>
           <div class="alert alert-success" role="alert" id="success" hidden>
             Save successful!

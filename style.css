@@ -26,6 +26,10 @@ header, footer {
   background: #e3ddc5;
 }
 
+#body {
+  margin-bottom: 10px;
+}
+
 h1 {
   /* margin: 0; */
 }
@@ -35,7 +39,7 @@ ul {
 }
 
 div {
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 
 .toast {
