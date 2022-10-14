@@ -23,8 +23,8 @@
             <!-- <small class="text-muted">Your Journal</small> -->
           </h1>
           <!-- <h6 class="float-left"><small class="text-muted">is Your Journal</small></h6> -->
-          <button class="btn float-right" data-toggle="modal" data-target="#yournalModal" title="Help">
-            <i class="bi bi-info-circle-fill float-right"></i>
+          <button class="btn btn-lg float-right" data-toggle="modal" data-target="#yournalModal" title="Help">
+            <i class="bi bi-question-square float-right" style="color:white"></i>
           </button>
         </div>
         
@@ -43,9 +43,12 @@
             <textarea class="form-control" id="body" rows="4" cols="50" required></textarea>
           </div>
           <div>
-            <button class="btn btn-primary" id="save">Save</button>
+            <button class="btn btn-light" id="save">Save</button>
             <!-- <input type="button" class="btn" id="reset"><i class="bi bi-arrow-clockwise"></i></input> -->
-            <input type="button" value="Reset" class="btn btn-warning" id="reset">
+            <!-- <input type="button" value="Reset" class="btn btn-secondary" id="reset"> -->
+            <button class="btn btn-secondary" id="reset" title="Reset">
+              <i class="bi bi-arrow-repeat"></i>
+            </button>
           </div>
           <div class="alert alert-success" role="alert" id="success" hidden>
             Save successful!

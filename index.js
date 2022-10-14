@@ -132,11 +132,11 @@ $(document).ready(function(){
             ).append(
               $('<p/>',{'text':cursor.value.body})
             ).append(
-              $('<button/>',{'class':'btn btn-danger card-link','note-id':cursor.value.id}).append(
+              $('<button/>',{'class':'btn btn-warning card-link','note-id':cursor.value.id}).append(
                 $('<i/>',{'class':'bi bi-trash'})
               )
             ).append(
-              $('<button/>',{'class':'btn btn-success card-link'}).append(
+              $('<button/>',{'class':'btn btn-secondary card-link'}).append(
                 $('<i/>',{'class':'bi bi-share'})
               )
             )
