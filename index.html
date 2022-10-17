@@ -40,6 +40,20 @@
       <section class="new-note">
         <!-- <h3>Enter a new journal</h3> -->
         <form>
+          <div class="form-group">
+            <label for="demo_overview" class="text-light">Select question category</label>
+              <select id="identities" class="form-control" data-role="select-dropdown">
+              <!-- options -->
+              <option value="random">Random from the web</option>
+              <option value="physical">Physical self</option>
+              <option value="spiritual">Spiritual self</option>
+              <option value="sexual">Sexual self</option>
+              <option value="material">Material self</option>
+              <option value="political">Political self</option>
+              <option value="digital">Digital self</option>
+              <option value="cog">Cognitive Distortion Test</option>
+            </select>
+          </div>
           <div class="input-group mb-3">
             <div class="input-group">
               <input type="text" class="form-control" id="title">
@@ -52,7 +66,7 @@
           </div>
           <div>
             <!-- <label for="body">Note text</label> -->
-            <textarea class="form-control" id="body" rows="4" cols="50" required></textarea>
+            <textarea class="form-control" id="body" rows="4" cols="50" placeholder="Type your answer here..." required></textarea>
           </div>
           <div>
             <button class="btn btn-light" id="save">Save</button>
@@ -97,13 +111,40 @@
             </button>
           </div>
           <div class="modal-body">
-            Yournal is Your personal Journal for capturing thoughts, experiences or even setting goals. 
-            This app will help you discover yourself more by asking you random questions. 
-            Put your answer in the provided text box as a detailed essay. Hit <b>save</b> button to save your answer. 
-            Hit the <b>refresh</b> button to get a random question. All data is saved locally.
+            Yournal is Your personal Journal for capturing thoughts, experiences or even setting goals.
+            This app will help you discover yourself more by asking you random questions.
+            Put your answer in the provided text box as a detailed essay. Hit <b>save</b> button to save your answer.
+            Hit the <b>refresh <i class="bi bi-arrow-repeat"></i></b> button to get a random question. All data is saved locally.
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+      Launch static backdrop modal
+    </button>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Understood</button>
           </div>
         </div>
       </div>

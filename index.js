@@ -1,34 +1,14 @@
 $(document).ready(function(){
-  function getQuestions(){
-    $.getJSON("https://dvbondoy.github.io/yournal/questions.json", function(data) {
-      let obj = Object.keys(data);
-      rnd = Math.floor(Math.random() * obj.length);
-      $("#title").val(data[rnd]);
-    });
-  }
-
-  getQuestions();
-
-  $("#reset").click(function(){
-    $("#body").val("");
-    getQuestions();
-  });
-
   // Create needed constants
-  // const list = document.querySelector('ul');
   const list = document.querySelector('#list');
-  // const jlist = $("#list");
-
   const titleInput = document.querySelector('#title');
-  // const jtitleInput = $("#title");
-
   const bodyInput = document.querySelector('#body');
-  // const jbodyInput = $("#body");
 
   const today = new Date().toLocaleDateString("en-US");
 
   // Create an instance of a db object for us to store the open database in
   let db;
+  let cat = "random";
 
   // Open our database; it is created if it doesn't already exist
   // (see the upgradeneeded handler below)
@@ -45,8 +25,7 @@ $(document).ready(function(){
     db = openRequest.result;
 
     // Run the displayData() function to display the notes already in the IDB
-    // displayData();
-    jdisplayData();
+    displayData();
   });
 
   // Set up the database tables if this has not already been done
@@ -73,7 +52,7 @@ $(document).ready(function(){
   $("#save").click(function(){
     if(document.getElementById("body").value == '')
     {
-        alert("Answer is empty. Note not saved.");
+        alert("Answer is empty. Not saved.");
         return false;
     }
     // grab the values entered into the form fields and store them in an object ready for being inserted into the DB
@@ -92,27 +71,20 @@ $(document).ready(function(){
       // Clear the form, ready for adding the next entry
       // titleInput.value = '';
       // bodyInput.value = '';
-      $("#savetoast").show().delay(5000);
-      
     });
 
     // Report on the success of the transaction completing, when everything is done
     transaction.addEventListener('complete', () => {
       console.log('Transaction completed: database modification finished.');
-
-
       // update the display of data to show the newly added item, by running displayData() again.
       // displayData();
-      // jdisplayData();
       // $("#refresh").click();
     });
-
-    $("#savetoast").show();
 
     transaction.addEventListener('error', () => console.log('Transaction not opened due to error'));
   });
 
-  function jdisplayData() {
+  function displayData() {
     // empty #list
     // $("#list").empty();
     const objectStore = db.transaction('notes_os').objectStore('notes_os');
@@ -134,13 +106,15 @@ $(document).ready(function(){
             ).append(
               $('<p/>',{'text':cursor.value.body})
             ).append(
+              $('<hr>')
+            ).append(
               $('<button/>',{'class':'btn btn-light btn-sm card-link','note-id':cursor.value.id,'style':'color:red'}).append(
                 $('<i/>',{'class':'bi bi-trash'})
               )
-            ).append(
-              $('<button/>',{'class':'btn btn-secondary btn-sm card-link'}).append(
-                $('<i/>',{'class':'bi bi-share'})
-              )
+            // ).append(
+            //   $('<button/>',{'class':'btn btn-secondary btn-sm card-link'}).append(
+            //     $('<i/>',{'class':'bi bi-share'})
+            //   )
             )
           )
         )
@@ -150,6 +124,7 @@ $(document).ready(function(){
     });
   }
 
+// delete note
   $(document).on('click', "[note-id]", function(){
     if(confirm("Confirm to delete!")){
       var i = Number($(this).attr('note-id'));
@@ -161,4 +136,40 @@ $(document).ready(function(){
       return false;
     }
   });
+  
+  function getQuestions(){
+    $.getJSON("https://dvbondoy.github.io/yournal/questions.json", function(data) {
+      let obj = Object.keys(data);
+      rnd = Math.floor(Math.random() * obj.length);
+      $("#title").val(data[rnd]);
+    });
+  }
+  
+  function getQuest(){
+    $.getJSON("quest.json", function(data) {
+      let obj = Object.keys(data[cat]);
+      // console.log(obj);
+      rnd = Math.floor(Math.random() * obj.length);
+      $("#title").val(data[cat][rnd]);
+    });
+  }
+
+
+  $("#reset").click(function(){
+    $("#body").val("");
+    getQuest();
+  });
+  
+  $("#identities").change(function(){
+    if(this.value == 'cog') {
+      window.open('cdt.html','_blank');
+      return false;
+    }
+    
+    cat = this.value;
+    $("#reset").click();
+    // console.log(cat);
+  });
+  
+  getQuest();
 });
