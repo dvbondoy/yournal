@@ -32,7 +32,7 @@
   
   <script>
   $(document).ready(function(){
-    $.getJSON("quest.json", function(data) {
+    $.getJSON("https://dvbondoy.github.io/yournal/quest.json", function(data) {
       let obj = Object.keys(data['cog']);
       console.log(data['cog'][0]);
       var $elem = $("#test");

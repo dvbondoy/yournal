@@ -146,7 +146,7 @@ $(document).ready(function(){
   }
   
   function getQuest(){
-    $.getJSON("quest.json", function(data) {
+    $.getJSON("https://dvbondoy.github.io/yournal/quest.json", function(data) {
       let obj = Object.keys(data[cat]);
       // console.log(obj);
       rnd = Math.floor(Math.random() * obj.length);
