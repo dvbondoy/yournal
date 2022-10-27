@@ -8,7 +8,7 @@ $(document).ready(function(){
 
   // Create an instance of a db object for us to store the open database in
   let db;
-  let cat = "digital";
+  let cat = "physical";
 
   // Open our database; it is created if it doesn't already exist
   // (see the upgradeneeded handler below)
@@ -163,6 +163,9 @@ $(document).ready(function(){
   $("#identities").change(function(){
     if(this.value == 'cog') {
       window.open('cdt.html','_blank');
+      return false;
+    }else if(this.value == 'ls'){
+      window.open('learning-style.html','_blank');
       return false;
     }
     

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+
+    <!--<link rel="preconnect" href="https://fonts.googleapis.com">-->
+    <!--<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+    <!--<link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!--<link href="style.css" rel="stylesheet">-->
+    <title>What's Your Learning Style Test</title>
+    <style>
+      textarea {
+        margin-bottom:30px;
+        }
+      h1 {
+        font-family:Lobster;
+      }
+      button {
+        margin-bottom:20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-sm">
+      <h1 class="text-center">
+        What's Your Learning Style Test
+      </h1>
+      <h4 class="text-center"><small class="text-muted">by Dioscoro V. Bondoy III</small></h4>
+      <hr>
+      <div id="test">
+        
+      </div>
+      <!--<hr>-->
+      <button class="btn btn-primary" id="save">Save as PDF</button>
+    </div>
+  </body>
+  
+  <script>
+  $(document).ready(function(){
+    $.getJSON("https://dvbondoy.github.io/yournal/quest.json", function(data) {
+      var $elem = $("#test");
+      var i = 0;
+      do {
+        $elem.append(
+          $('<h5/>',{'text':i+1+'. '+data['ls'][i]})
+          ).append(
+            $('<textarea/>',{'class':'form-control','placeholder':'Type answer here.'})
+            )
+        i++;
+      }while(i<10);
+    });
+    
+    $("#save").click(function(){
+      window.print();
+    });
+  });
+  </script>
+</html>
+  
