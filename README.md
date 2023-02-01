@@ -5,4 +5,4 @@
 - Phone and tablet compatible
 - Easy to use
 
-access it at https://dvbondoy.github.com/yournal
+access it at https://dvbondoy.github.io/yournal
